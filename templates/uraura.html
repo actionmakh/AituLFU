@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Success!
+{% endblock %}
+
+{% block content %}
+
+<div class="container col-md-6 text-center p-4 rounded-section my-4">
+    <h1>Success!</h1>
+    <div><img src="{% static 'blog/image/uraura.gif' %}" width="62%" height="62%"></div>
+    <h1>You now have an account and can leave comments!</h1>
+    <a class="btn btn-primary" href="/">back</a>
+
+</div>
+
+{% endblock %}

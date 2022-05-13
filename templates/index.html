@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    AITU-blog
+{% endblock %}
+
+
+{% block content %}
+    <div class="d-flex justify-content-center">
+
+        <div class="container">
+            <div class="row pl-4">
+                <div class="col-md-5 mx-auto my-4 rounded-section p-4">
+                    <h3>News</h3>
+                    {% if news %}
+                        {% for news in news %}
+                            <li>{{ news.title }}</li>
+                        {% endfor %}
+
+                    {% else %}
+                        <li>Nothing to show ¯\_(ツ)_/¯</li>
+                    {% endif %}
+                <a class="btn btn-primary" href="/news">More</a>
+                </div>
+                <div class="col-md-5 mx-auto my-4 rounded-section ml-4 p-4">
+                    <h3>aituFLU</h3>
+                    {% if LFUs %}
+                        {% for LFU in LFUs %}
+                            <li>{{ LFU.created_at }} - {{ LFU.text }}</li>
+                        {% endfor %}
+
+                    {% else %}
+                        <li>Nothing to show ¯\_(ツ)_/¯</li>
+                    {% endif %}
+                    <a class="btn btn-primary" href="/aituLFU">More</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

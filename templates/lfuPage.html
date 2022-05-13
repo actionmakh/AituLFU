@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-9 m-auto h-100 text-center p-4 rounded-section">
+                <br>
+                <img src="{{ lfu.image }}" class="card-img-top" alt="image for LFU">
+                <p>{{ lfu.text }}</p>
+                <small class="float-right">{{ lfu.created_at }}</small>
+                <br>
+                {% if request.session.user %}
+                    <form action="/addReply/{{ lfu.id }}" method="post">
+                        {% csrf_token %}
+                        <label for="comment">Comment</label>
+                        <textarea name="text" id="comment" class="form-control"></textarea>
+                        <button class="btn btn-primary float-right mt-2" type="submit">send</button>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+        {% for reply in replies %}
+            <div class="col-md-9 mx-auto mt-4 h-100 p-4 rounded-section">
+                <b>{{ reply.user.username }}</b>
+                <p>{{ reply.text }}</p>
+                <small class="float-right">{{ reply.created_at }}</small>
+            </div>
+        {% endfor %}
+
+    </div>
+    <br>
+    <br>
+    <br>
+{% endblock %}

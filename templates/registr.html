@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Registration
+{% endblock %}
+
+{% block content %}
+
+    <div class="container col-md-6 text-center p-4 rounded-section my-4">
+        <form method="post" action="register">
+            {% csrf_token %}
+            <h1>AITUblog</h1>
+            <h4>Enter the username:</h4>
+            <input type="text" placeholder="username" name="username" required class="click3"/>
+            <h4>Enter the password:</h4>
+            <input type="text" placeholder="password" name="password" required class="click3"/>
+            <h4>Confirm the password:</h4>
+            <input type="text" placeholder="repeat password" name="rePassword" required class="click3"/>
+            <div class="container">
+                <button class="btn btn-lg btn-primary" type="submit">register</button>
+            </div>
+            <br>
+            <h5>*you can choose any name (and not even your own) for the username <br>
+                *registration is required if you want to leave a comment under the posts</h5>
+            <br>
+            {% if errors %}
+                {% for error in errors %}
+                    <h5 style="color: red">{{ error }}</h5>
+                {% endfor %}
+
+            {% endif %}
+        </form>
+    </div>
+
+{% endblock %}

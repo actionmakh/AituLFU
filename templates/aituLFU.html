@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    LFU
+{% endblock %}
+{% block content %}
+    <br>
+    <div class="d-flex justify-content-center">
+        {% if request.session.user %}
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModal">Find
+                someone
+            </button>
+        {% endif %}
+    </div>
+    <div class="container">
+        <div class="d-flex justify-content-center row">
+            {% if LFUs %}
+                {% for LFU in LFUs %}
+                    <div class="col-lg-5 bg-white post mx-auto my-2 p-4">
+                        <img src="{{ LFU.image }}" class="card-img-top">
+                        <p>{{ LFU.text }}</p>
+                        <small><b>Created: </b>{{ LFU.created_at }}</small><br>
+                        <a class="btn btn-primary" href="/lfu/{{ LFU.id }}">More or reply</a>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Send request to LFU</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="/addLFU" method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        {% csrf_token %}
+                        <textarea class="form-control" name="text" cols="30" rows="10"></textarea>
+                        <div class="custom-file mt-4">
+                            <input name="image" type="file" class="custom-file-input" id="inputGroupFile01"
+                                   aria-describedby="inputGroupFileAddon01">
+                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
