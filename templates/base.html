@@ -86,6 +86,14 @@
 </div>
 
 <div class="container mt-4">
+    {% for message in messages %}
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <strong>{{ alert.title }}</strong> {% if 'safe' in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
     {% for alert in alerts %}
 
         <div class="alert alert-{{ alert.type }} alert-dismissible fade show" role="alert">

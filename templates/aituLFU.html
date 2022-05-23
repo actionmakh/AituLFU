@@ -21,6 +21,7 @@
                         <p>{{ LFU.text }}</p>
                         <small><b>Created: </b>{{ LFU.created_at }}</small><br>
                         <a class="btn btn-primary" href="/lfu/{{ LFU.id }}">More or reply</a>
+                        <a class="btn btn-primary" href="/followLFU/{{ LFU.id }}">Follow</a>
                     </div>
                 {% endfor %}
             {% endif %}
